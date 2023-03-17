@@ -17,7 +17,6 @@ export async function getServerSideProps(context) {
 
 
 const Category = ({res}) => {
-  console.log(res);
   return (
     <Layout>
      <div 

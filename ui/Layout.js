@@ -12,9 +12,10 @@ const Layout = ({children}) => {
    </div>
     <div 
     style={{
-      paddingInline:"110px",
+      paddingInline:"20px",
       marginTop:"20px"
     }}
+    className="layout-children"
     >
     {children}
     </div>

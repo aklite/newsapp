@@ -1,41 +1,45 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react'
 
 const GeneralNews = ({result}) => {
-  
+  console.log(result);
   return (
   <div 
-  style={{
-   display:"grid",
-   gridTemplateColumns:"repeat(3, 1fr)",
-   gridTemplateRows:"repeat(3, 1fr)",
-   gap:"20px"
-  }}
+  className="articles"
   >
     {result.articles.map((article, index) => {
-           return <div key={index}
-           style={{
-               backgroundColor:"#EAEAfe"
-           }}
-           >
-            <a href={article.url}
+          return <a href={article.url}
+          key={index}
+          style={{
+            display:"block",
+            marginBlock:"40px",
+            backgroundColor:"gray",
+          }}
+          >
+            <img src={article.urlToImage} 
+             style={{
+              width:"100%",
+             }}
+            alt="" />
+            <span
             style={{
-              textDecoration:"none",
-              color:"black"
+              paddingInline:"20px",
+              display:"inline-block",
+              paddingBlock:"10px",
+              color:"white",
+              backgroundColor:"#a1a",
+              borderRadius:"10px"
             }}
             >
-              <div>
-                <img src={article.urlToImage || 'https://static.vecteezy.com/system/resources/thumbnails/010/837/202/small/breaking-news-on-world-map-background-element-design-for-tv-and-digital-content-png.png'}
-              width={360}
-             height={180}
-               alt="" />
-              </div>
-              <p>
-                {article.title}
-              </p>
-            </a>
-           </div>
+              {article.author}
+            </span>
+            <p
+            style={{
+              paddingBlock:"20px",
+              paddingInline:"10px",
+              fontSize:"1.25rem"
+            }}
+            >{article.title}</p>
+          </a>
           })}
   </div>
   )

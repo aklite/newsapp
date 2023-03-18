@@ -1,13 +1,14 @@
+import Link from 'next/link';
 import React from 'react'
 
 const GeneralNews = ({result}) => {
-  console.log(result);
+ 
   return (
   <div 
   className="articles"
   >
     {result.articles.map((article, index) => {
-          return <a href={article.url}
+          return <Link href={article.url}
           key={index}
           style={{
             display:"block",
@@ -39,7 +40,7 @@ const GeneralNews = ({result}) => {
               fontSize:"1.25rem"
             }}
             >{article.title}</p>
-          </a>
+          </Link>
           })}
   </div>
   )

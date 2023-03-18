@@ -116,3 +116,10 @@ a {
     padding-inline: 100px;
   }
 }
+
+.results::-webkit-scrollbar{
+  display: none;
+}
+.articles{
+  
+}

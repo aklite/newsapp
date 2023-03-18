@@ -5,7 +5,9 @@ import SearchBar from './SearchBar'
 const Header = () => {
   return (
     <div style={{
-      display:"flex"
+      display:"flex",
+      alignItems:"center",
+      position:"relative"
     }}>
         <Navigation/>
         <SearchBar/>

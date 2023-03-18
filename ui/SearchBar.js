@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import {AiOutlineSearch} from "react-icons/ai"
 const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
@@ -45,7 +45,11 @@ const SearchBar = () => {
           display: "flex",
         }}
       >
-        <div>Icon</div>
+        <div>
+        <AiOutlineSearch
+         fontSize={40}
+        />
+        </div>
         <div>
           <input
             className="input"

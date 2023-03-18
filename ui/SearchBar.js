@@ -1,9 +1,24 @@
 import React, { useEffect, useState } from "react";
 import {AiOutlineSearch} from "react-icons/ai"
+import useSWR from 'swr';
+import axios from 'axios';
+async function fetchData(query) {
+    const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=8cd337d555b044639574874af216df52`;
+    const response = await axios.get(url);
+    const data = response.data;
+    console.log(data);
+    return data;
+  }
 const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const { data } = useSWR(debouncedQuery, fetchData);
+  useEffect(() => {
+    if (data && data.articles) {
+      setSearchResults(data.articles);
+    }
+  }, [data]);
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
       setDebouncedQuery(query);
@@ -17,21 +32,6 @@ const SearchBar = () => {
   const handleQueryChange = (event) => {
     setQuery(event.target.value);
   };
-  useEffect(() => {
-    const fetchSearchResults = async () => {
-      const response = await fetch(
-        `https://newsapi.org/v2/everything?q=${debouncedQuery}&apiKey=8cd337d555b044639574874af216df52`
-      );
-      const data = await response.json();
-      setSearchResults(data.articles);
-    };
-
-    if (debouncedQuery) {
-      fetchSearchResults();
-    } else {
-      setSearchResults([]);
-    }
-  }, [debouncedQuery]);
   return (
     <div
       style={{
